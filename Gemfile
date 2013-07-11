@@ -21,6 +21,7 @@ gem 'jquery-rails', '2.0.2'
 
 group :development do
   gem 'annotate', '2.5.0'
+  gem 'webrick', '~> 1.3.1'
 end
 
 group :test do
