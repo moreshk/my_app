@@ -1,0 +1,11 @@
+<%= form_for(@task) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+  	<%= f.label :task %>
+    <%= f.text_field :task, placeholder: "Create new Task..." %>
+
+    <%= f.label :complete_by %>
+    <%= f.date_select :complete_by %>
+  </div>
+  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+<% end %>

@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   attr_accessible :city, :email, :name, :phone,:password, :password_confirmation
   has_secure_password
 
+  has_many :tasks, dependent: :destroy
+
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
@@ -29,6 +31,11 @@ class User < ActiveRecord::Base
   validates :phone, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validates :city, presence: true
 
+  def feed
+    # This is preliminary. See "Following users" for the full implementation.
+    tasks.where("user_id = ?", id)
+  end
+  
   private
 
     def create_remember_token

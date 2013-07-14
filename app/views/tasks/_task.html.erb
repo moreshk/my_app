@@ -1,0 +1,15 @@
+<li>
+  <span class="content"><%= task.task %></span>
+  <span class="assigned_user"><%= task.assigned_user_id %></span>
+  <span class="complete_by"><%= task.complete_by %></span>
+  <span class="is_complete"><%= task.is_complete %></span>
+
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(task.created_at) %> ago.
+  </span>
+  <% if current_user?(task.user) %>
+    <%= link_to "delete", task, method: :delete,
+                                     data: { confirm: "You sure?" },
+                                     title: task.task %>
+  <% end %>
+</li>

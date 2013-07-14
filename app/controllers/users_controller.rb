@@ -5,6 +5,7 @@ before_filter :admin_user,     only: :destroy
 
   def show
     @user = User.find(params[:id])
+    @tasks = @user.tasks.paginate(page: params[:page])
   end
 
   def new
@@ -46,13 +47,6 @@ before_filter :admin_user,     only: :destroy
   end
 
   private
-
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "Please sign in."
-      end
-    end
 
     def correct_user
       @user = User.find(params[:id])
